@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+        .stock-info {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+        .stock-info h2 {
+            color: #333;
+            font-size: 24px;
+        }
+        .stock-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <div>
+        {% for ticker, info in data.items() %}
+            {% if not asset_type or asset_type.lower() in ticker.lower() %}
+                <div class="stock-info">
+                    <h2>{{ info['longName'] }} ({{ ticker }})</h2>
+                    <p>Current Price: {{ info['regularMarketPrice'] }}</p>
+                    <p>Market Cap: {{ info['marketCap'] }}</p>
+                    <!-- Add any other information you want to display -->
+                    <p>For investment, please contact your financial institution.</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

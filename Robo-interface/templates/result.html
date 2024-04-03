@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Investment Portfolio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            color: #333;
+        }
+        .portfolio {
+            margin-top: 20px;
+        }
+        .asset {
+            background: #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Portfolio</h1>
+        <div class="portfolio">
+            {% for asset, weight in portfolio.items() %}
+                <div class="asset">
+                    {{ asset.capitalize() }}: {{ weight * 100 }}%
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="portfolio">
+    {% for asset, weight in portfolio.items() %}
+        <div class="asset">
+            <a href="{{ url_for('admin_dashboard', asset_type=asset) }}">{{ asset.capitalize() }}: {{ weight * 100 }}%</a>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
